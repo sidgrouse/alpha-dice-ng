@@ -1,0 +1,10 @@
+<button mat-raised-button color="primary">Primary</button>
+<ag-grid-angular
+    style="width: 100%;"
+    class="ag-theme-alpine"
+    domLayout='autoHeight'
+    [rowData]="projects"
+    [columnDefs]="columnDefs"
+    (cellValueChanged)="onCellValueChanged($event)"
+>
+</ag-grid-angular>

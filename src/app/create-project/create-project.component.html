@@ -1,0 +1,14 @@
+<mat-form-field appearance="fill">
+  <mat-label>Name</mat-label>
+  <input matInput type="text" [(ngModel)]="project.name">
+</mat-form-field>
+<mat-form-field appearance="fill">
+  <mat-label>Url</mat-label>
+  <input matInput type="text" [(ngModel)]="project.url">
+</mat-form-field>
+<mat-form-field appearance="fill">
+  <mat-label>Description</mat-label>
+  <input matInput type="text" [(ngModel)]="project.description">
+</mat-form-field>
+
+<button mat-raised-button color="primary"(click)="post()">Ok</button>
