@@ -48,6 +48,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CreateProjectComponent } from './create-project/create-project.component';
 import { ProjectListComponent } from './project-list/project-list.component';
+import { UsersCellRendererComponent } from './project-list/users-cell-renderer.component';
 
 @NgModule({
   exports: [
@@ -88,6 +89,7 @@ import { ProjectListComponent } from './project-list/project-list.component';
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
+    BrowserAnimationsModule
   ]
 })
 export class AngMaterialModule {}
@@ -97,13 +99,14 @@ export class AngMaterialModule {}
   declarations: [
     AppComponent,
     CreateProjectComponent,
-    ProjectListComponent
+    ProjectListComponent,
+    UsersCellRendererComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    AgGridModule.withComponents([]),
+    AgGridModule.withComponents([UsersCellRendererComponent]),
     FormsModule,
     AngMaterialModule
   ],

@@ -1,4 +1,5 @@
-export class ProjectItem {
+export class OrderDetails {
+
   constructor(
     public itemId: number,
     public projectId: number,
@@ -6,5 +7,7 @@ export class ProjectItem {
     public itemName: string,
     public status: string,
     public url: string,
-    public details: string) {}
+    public details: string,
+    public originalPrice: number,
+    public users: string[] = []) {}
 }

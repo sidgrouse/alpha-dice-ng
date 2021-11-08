@@ -1,4 +1,4 @@
-<button mat-raised-button color="primary">Primary</button>
+<button mat-raised-button color="primary" [routerLink]="'/new'">Add</button>
 <ag-grid-angular
     style="width: 100%;"
     class="ag-theme-alpine"
@@ -6,5 +6,6 @@
     [rowData]="projects"
     [columnDefs]="columnDefs"
     (cellValueChanged)="onCellValueChanged($event)"
+    [frameworkComponents]="frameworkComponents"
 >
 </ag-grid-angular>

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { CreateProjectDto } from '../dto/create-project.dto';
 
 @Component({
@@ -12,8 +13,8 @@ export class CreateProjectComponent {
 
   constructor(private http: HttpClient) {}
 
-  post() {
+  async post() {
     console.log(this.project);
-    //// await this.http.post('http://localhost:3001/project', this.project).subscribe({error: e => console.error(e)});
+    // await this.http.post(environment.apiEndpoint + '/project', this.project).subscribe({error: e => console.error(e)});
   }
 }
