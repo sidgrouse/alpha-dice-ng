@@ -10,7 +10,7 @@ import { ICellRendererParams } from 'ag-grid-community';
    `
 })
 export class UsersCellRendererComponent {
-   private users: string[];
+   public users: string[];
 
    // gets called once before the renderer is used
    agInit(params: ICellRendererParams): void {

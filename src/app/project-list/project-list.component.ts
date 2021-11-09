@@ -12,7 +12,7 @@ import { UsersCellRendererComponent } from './users-cell-renderer.component';
   styleUrls: ['./project-list.component.scss']
 })
 export class ProjectListComponent {
-  private frameworkComponents;
+  public frameworkComponents;
   columnDefs: ColDef[] = [
     { headerName: 'Проект', field: 'projectName', filter: 'agTextColumnFilter' },
     { field: 'status', editable: true, cellEditor: 'agSelectCellEditor'},
