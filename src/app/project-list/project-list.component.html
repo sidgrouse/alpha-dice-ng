@@ -1,11 +1,18 @@
-<button mat-raised-button color="primary" [routerLink]="'/new'">Add</button>
+<mat-form-field style="width: 100%;" class="example-full-width" appearance="fill">
+  <mat-label>Search</mat-label>
+  <input matInput [ngModel]="searchPattern" (ngModelChange)="onFulterChange($event)" placeholder="Поиск в тч по вписавшимся юзерам">
+</mat-form-field>
+
 <ag-grid-angular
-    style="width: 100%;"
-    class="ag-theme-alpine"
-    domLayout='autoHeight'
-    [rowData]="projects"
-    [columnDefs]="columnDefs"
-    (cellValueChanged)="onCellValueChanged($event)"
-    [frameworkComponents]="frameworkComponents"
+style="width: 100%;"
+class="ag-theme-alpine"
+domLayout='autoHeight'
+[rowData]="projects"
+[columnDefs]="columnDefs"
+(cellValueChanged)="onCellValueChanged($event)"
+(gridReady)="onGridReady($event)"
+[frameworkComponents]="frameworkComponents"
 >
 </ag-grid-angular>
+
+<button mat-raised-button color="primary" [routerLink]="'/add-project'">Add project</button>

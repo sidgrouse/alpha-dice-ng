@@ -49,6 +49,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CreateProjectComponent } from './create-project/create-project.component';
 import { ProjectListComponent } from './project-list/project-list.component';
 import { UsersCellRendererComponent } from './project-list/users-cell-renderer.component';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 @NgModule({
   exports: [
@@ -89,7 +90,8 @@ import { UsersCellRendererComponent } from './project-list/users-cell-renderer.c
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    OverlayModule
   ]
 })
 export class AngMaterialModule {}

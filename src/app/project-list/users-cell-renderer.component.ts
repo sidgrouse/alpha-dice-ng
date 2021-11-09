@@ -1,15 +1,28 @@
 import { Component } from '@angular/core';
 import { ICellRendererParams } from 'ag-grid-community';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @Component({
    selector: 'app-user-value-component',
    template: `
          <span *ngIf="users.length > 0">
-             <button mat-button color="basic" (click)="buttonClicked()">{{users.length}}</button>
+             <button mat-button color="basic"
+             (click)="buttonClicked()" cdkOverlayOrigin #trigger="cdkOverlayOrigin">{{users.length}}</button>
+            <ng-template
+                cdkConnectedOverlay
+                [cdkConnectedOverlayOrigin]="trigger"
+                [cdkConnectedOverlayOpen]="isOpen"
+                >
+                <ul class="example-list">
+                    <li *ngFor="let user of users">{{user}}</li>
+                </ul>
+            </ng-template>
          </span>
-   `
+   `,
+   styleUrls: ['./users-cell-renderer.component.scss']
 })
 export class UsersCellRendererComponent {
+    private isOpen: boolean;
    public users: string[];
 
    // gets called once before the renderer is used
@@ -23,6 +36,7 @@ export class UsersCellRendererComponent {
    }
 
    buttonClicked() {
-       alert(this.users);
+       // alert(this.users);
+       this.isOpen = !this.isOpen;
    }
 }

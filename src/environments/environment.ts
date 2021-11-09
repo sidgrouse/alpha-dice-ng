@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiEndpoint: 'http://localhost:3001'
+  apiEndpoint: 'http://kmatroskin.ru:3001'
 };
 
 /*
