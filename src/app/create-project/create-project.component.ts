@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { CreateProjectDto } from '../dto/create-project.dto';
+import { AddProjectDto } from '../dto/project.add.dto';
 
 @Component({
   selector: 'app-create-project',
@@ -8,7 +8,7 @@ import { CreateProjectDto } from '../dto/create-project.dto';
   styleUrls: ['./create-project.component.scss']
 })
 export class CreateProjectComponent {
-  project: CreateProjectDto = new CreateProjectDto();
+  project: AddProjectDto = new AddProjectDto();
 
   constructor(private http: HttpClient) {}
 

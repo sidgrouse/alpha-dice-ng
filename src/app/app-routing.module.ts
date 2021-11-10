@@ -4,8 +4,9 @@ import { CreateProjectComponent } from './create-project/create-project.componen
 import { ProjectListComponent } from './project-list/project-list.component';
 
 const routes: Routes = [
-  { path: '', component: ProjectListComponent },
+  { path: 'project-list', component: ProjectListComponent },
   { path: 'add-project', component: CreateProjectComponent },
+  { path: '', redirectTo: '/project-list', pathMatch: 'full' },
 ];
 
 @NgModule({
