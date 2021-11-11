@@ -48,8 +48,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CreateProjectComponent } from './create-project/create-project.component';
 import { ProjectListComponent } from './project-list/project-list.component';
-import { UsersCellRendererComponent } from './project-list/users-cell-renderer.component';
+import { UsersCellRendererComponent } from './project-list/cell-renderers/users-cell-renderer.component';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { LinkCellRendererComponent } from './project-list/cell-renderers/link-cell-renderer.component';
+import { InvoicesCellRendererComponent } from './project-list/cell-renderers/invoices-cell-renderer.component';
 
 @NgModule({
   exports: [
@@ -102,13 +104,15 @@ export class AngMaterialModule {}
     AppComponent,
     CreateProjectComponent,
     ProjectListComponent,
-    UsersCellRendererComponent
+    UsersCellRendererComponent,
+    LinkCellRendererComponent,
+    InvoicesCellRendererComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    AgGridModule.withComponents([UsersCellRendererComponent]),
+    AgGridModule.withComponents([UsersCellRendererComponent, LinkCellRendererComponent, InvoicesCellRendererComponent]),
     FormsModule,
     AngMaterialModule
   ],

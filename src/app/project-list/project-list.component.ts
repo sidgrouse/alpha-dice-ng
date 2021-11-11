@@ -5,7 +5,9 @@ import { environment } from 'src/environments/environment';
 import { ProjectStatus } from '../constants/project-status';
 import { ProjectDto } from '../dto/project.dto';
 import { OrderDetails } from '../viewModels/order-details';
-import { UsersCellRendererComponent } from './users-cell-renderer.component';
+import { InvoicesCellRendererComponent } from './cell-renderers/invoices-cell-renderer.component';
+import { LinkCellRendererComponent } from './cell-renderers/link-cell-renderer.component';
+import { UsersCellRendererComponent } from './cell-renderers/users-cell-renderer.component';
 
 @Component({
   selector: 'app-project-list',
@@ -16,16 +18,19 @@ export class ProjectListComponent {
   public searchPattern: string;
   public frameworkComponents;
   private gridApi;
+  private gridColumnApi;
+
+  defaultColDef = { resizable: true};
   columnDefs: ColDef[] = [
-    { headerName: 'Проект', field: 'projectName'},
+    { headerName: 'Проект', cellRenderer: 'linkCellRenderer'},
     { headerName: 'Статус', field: 'status', editable: true, cellEditor: 'agSelectCellEditor',
         cellEditorParams: {values: Object.values(ProjectStatus), }, },
-    { headerName: 'Наименование', field: 'item_name', editable: true }, // TODO: editable
+    { headerName: 'Наименование', field: 'item_name', editable: true },
     { headerName: 'Цена для всех', field: 'item_originalPrice', editable: true },
     { headerName: 'Цена для нас', field: 'item_discountPrice', editable: true },
     // tslint:disable-next-line: max-line-length
     { headerName: 'Вписались', cellRenderer: 'usersCellRenderer', getQuickFilterText: params => params.data.users },
-    { headerName: 'Сумма инвойсов', valueGetter: value => value.data.invoices.reduce((p, c) => p + c.amount, 0) },
+    { headerName: 'Сумма инвойсов', cellRenderer: 'invoicesCellRenderer' },
     { headerName: 'Комментарий', field: 'details', editable: true, resizable: true },
 
   ];
@@ -34,13 +39,21 @@ export class ProjectListComponent {
 
   constructor(private http: HttpClient) {
     this.frameworkComponents = {
-      usersCellRenderer: UsersCellRendererComponent
+      usersCellRenderer: UsersCellRendererComponent,
+      linkCellRenderer: LinkCellRendererComponent,
+      invoicesCellRenderer: InvoicesCellRendererComponent,
     };
     this.refreshData();
   }
 
   public onGridReady = (params) => {
+    console.log('p', params);
     this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+  }
+
+  public onFirstDataRendered = () => {
+    this.autoSizeAll(false);
   }
 
   public onCellValueChanged(event: CellValueChangedEvent) {
@@ -64,5 +77,14 @@ export class ProjectListComponent {
           // tslint:disable-next-line: max-line-length
           this.projects = result.flatMap(p => p.items.flatMap(itm => new OrderDetails(itm.id, p.id, p.name, itm.name, p.status, p.url, p.details, itm.originalPrice, itm.discountPrice, itm.userOrders, itm.invoices)));
         });
+  }
+
+  autoSizeAll(skipHeader: boolean) {
+    const allColumnIds = [];
+    this.gridColumnApi.getAllColumns().forEach(column => {
+      allColumnIds.push(column.colId);
+    });
+    console.log('--', allColumnIds);
+    this.gridColumnApi.autoSizeColumns(allColumnIds, skipHeader);
   }
 }

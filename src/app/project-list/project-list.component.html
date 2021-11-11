@@ -9,8 +9,10 @@ class="ag-theme-alpine"
 domLayout='autoHeight'
 [rowData]="projects"
 [columnDefs]="columnDefs"
+[defaultColDef]="defaultColDef"
 (cellValueChanged)="onCellValueChanged($event)"
 (gridReady)="onGridReady($event)"
+(firstDataRendered)="onFirstDataRendered($event)"
 [frameworkComponents]="frameworkComponents"
 >
 </ag-grid-angular>

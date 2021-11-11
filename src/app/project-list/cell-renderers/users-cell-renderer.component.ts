@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
 import { ICellRendererParams } from 'ag-grid-community';
-import {MatExpansionModule} from '@angular/material/expansion';
 
 @Component({
    selector: 'app-user-value-component',
    template: `
          <span *ngIf="users.length > 0">
              <button mat-button color="basic"
-             (click)="buttonClicked()" cdkOverlayOrigin #trigger="cdkOverlayOrigin">{{users.length}}</button>
+             (mouseover)="isOpen=true"
+             (mouseout)="isOpen=false"
+              cdkOverlayOrigin #trigger="cdkOverlayOrigin">{{users.length}}</button>
             <ng-template
                 cdkConnectedOverlay
                 [cdkConnectedOverlayOrigin]="trigger"
